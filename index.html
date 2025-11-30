@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Av. Orza Mihăiță - Cabinet de Avocatură | Baia Mare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0827A0;
+            --primary-dark: #0827A0;
+            --primary-light: #0827A0;
+            --accent: #0827A0;
+            --text: #1a1a1a;
+            --text-light: #4a4a4a;
+            --light: #f0f4f8;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(8, 39, 160, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: #0827A0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 180, 216, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(30deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05)),
+                              linear-gradient(150deg, rgba(255,255,255,0.05) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,0.05) 87.5%, rgba(255,255,255,0.05));
+            background-size: 80px 140px;
+            background-position: 0 0, 40px 70px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            max-width: 1200px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-bar {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* About Section */
+        .about {
+            padding: 10rem 2rem;
+            background: var(--light);
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: #0827A0;
+            opacity: 0.03;
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 300px;
+            height: 300px;
+            background: #0827A0;
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 600px;
+            background: #0827A0;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(8, 39, 160, 0.3);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlight {
+            background: #0827A0;
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-highlight p {
+            font-size: 1.15rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Audio Player pentru sectiuni cu fundal alb */
+        .services .audio-player {
+            background: #0827A0;
+            border: 1px solid #0827A0;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #0827A0;
+        }
+
+        .audio-info {
+            flex: 1;
+            color: var(--white);
+        }
+
+        .audio-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .audio-progress {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .audio-progress-bar {
+            height: 100%;
+            background: var(--white);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .volume-slider-fill {
+            height: 100%;
+            background: var(--white);
+            width: 70%;
+            border-radius: 2px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 10rem 2rem;
+            background: var(--white);
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 6rem;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid #0827A0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0827A0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(8, 39, 160, 0.2);
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-content {
+            color: var(--white);
+        }
+
+        .service-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: #0827A0;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-number {
+            color: var(--white);
+            opacity: 0.2;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-title {
+            color: var(--white);
+        }
+
+        .service-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            transition: color 0.4s ease;
+        }
+
+        .service-card:hover .service-description {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* CTA Card in Grid */
+        .cta-card {
+            background: linear-gradient(135deg, #0827A0 0%, #0827A0 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid #0827A0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(8, 39, 160, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .cta-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card-buttons {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-card .btn-primary {
+            background: var(--white);
+            color: #0827A0;
+        }
+
+        .cta-card .btn-primary:hover {
+            background: var(--white);
+            color: #0827A0;
+            transform: translateY(-5px);
+        }
+
+        /* Liquidator Section */
+        .liquidator {
+            padding: 10rem 2rem;
+            background: #0827A0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquidator::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .liquidator::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .liquidator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .liquidator-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            color: var(--white);
+        }
+
+        .liquidator-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .liquidator-text {
+            color: var(--white);
+        }
+
+        .liquidator-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .liquidator-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .liquidator-features {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .liquidator-list {
+            list-style: none;
+        }
+
+        .liquidator-list li {
+            padding: 1.5rem 0;
+            padding-left: 3rem;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .liquidator-list li:last-child {
+            border-bottom: none;
+        }
+
+        .liquidator-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #0827A0;
+            border-radius: 50%;
+        }
+
+        .liquidator-list li::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 5px;
+            height: 10px;
+            border: solid #0827A0;
+            border-width: 0 2px 2px 0;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 10rem 2rem;
+            background: var(--light);
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #e0e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(8, 39, 160, 0.1);
+        }
+
+        .faq-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--text);
+            padding: 2.5rem;
+            background: linear-gradient(to right, var(--light), var(--white));
+            font-weight: 700;
+            border-left: 5px solid var(--primary);
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '';
+            position: absolute;
+            right: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .faq-answer {
+            padding: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        .faq-answer strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 2rem;
+            background: #0827A0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 5rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-about h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #0827A0;
+        }
+
+        .footer-about p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #0827A0;
+        }
+
+        .footer-contact p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-contact a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: #0827A0;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-container,
+            .liquidator-content,
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about::before {
+                width: 100%;
+                clip-path: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-placeholder {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 3rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+
+            .about,
+            .services,
+            .liquidator,
+            .faq,
+            .cta {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-label {
+                font-size: 0.8rem;
+                padding-left: 40px;
+            }
+
+            .section-label::before {
+                width: 30px;
+            }
+
+            .about-text {
+                font-size: 1rem;
+            }
+
+            .about-image::before {
+                width: 200px;
+                height: 200px;
+            }
+
+            .image-placeholder {
+                height: 300px;
+            }
+
+            .hero-cta,
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 1rem 2rem;
+            }
+
+            .services-grid {
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .service-number {
+                font-size: 3rem;
+            }
+
+            .service-title {
+                font-size: 1.4rem;
+            }
+
+            .service-description {
+                font-size: 0.95rem;
+            }
+
+            .cta-card {
+                padding: 2rem;
+            }
+
+            .cta-card-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-card-text {
+                font-size: 1rem;
+            }
+
+            .liquidator-text h3 {
+                font-size: 2rem;
+            }
+
+            .liquidator-text p {
+                font-size: 1rem;
+            }
+
+            .liquidator-features {
+                padding: 2rem;
+            }
+
+            .liquidator-list li {
+                font-size: 0.95rem;
+                padding: 1rem 0;
+                padding-left: 2.5rem;
+            }
+
+            .faq-question {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
+
+            .faq-answer {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
+
+            .footer {
+                padding: 3rem 1.5rem 1.5rem;
+            }
+
+            .footer-main {
+                gap: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .footer-about h3 {
+                font-size: 1.5rem;
+            }
+
+            .footer-section h4 {
+                font-size: 1.2rem;
+            }
+
+            /* Audio Player Mobile */
+            .audio-player {
+                padding: 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .audio-controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .play-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .audio-info {
+                width: 100%;
+            }
+
+            .audio-title {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+
+            .volume-control {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about,
+            .services,
+            .liquidator,
+            .faq,
+            .cta {
+                padding: 3rem 1rem;
+            }
+
+            .service-card,
+            .cta-card {
+                padding: 1.5rem;
+            }
+
+            .service-number {
+                font-size: 2.5rem;
+            }
+
+            .service-title {
+                font-size: 1.3rem;
+            }
+
+            .cta-card-title {
+                font-size: 1.3rem;
+            }
+
+            .footer-about p,
+            .footer-contact p {
+                font-size: 0.9rem;
+            }
+
+            .audio-title {
+                font-size: 0.85rem;
+            }
+
+            .play-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .play-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">ORZA MIHĂIȚĂ</div>
+            <ul class="nav-links">
+                <li><a href="#despre">Despre</a></li>
+                <li><a href="#servicii">Servicii</a></li>
+                <li><a href="#lichidator">Lichidator</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">AVOCAT | LICHIDATOR JUDICIAR</div>
+            <h1 class="hero-title">Orza Mihăiță</h1>
+            <p class="hero-description">
+                Expertiză juridică profesionistă în drept civil, comercial, insolvență și executare silită. 
+                Asistență dedicată pentru protejarea drepturilor și intereselor dumneavoastră.
+            </p>
+            <div class="hero-cta">
+                <a href="tel:+40744529592" class="btn btn-primary">Programează Consultație</a>
+                <a href="#servicii" class="btn btn-secondary">Servicii Oferite</a>
+            </div>
+            <div class="contact-bar">
+                <div class="contact-item">
+                    <div class="contact-icon">▪</div>
+                    <div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">Locație</div>
+                        <div>Baia Mare, str. George Coșbuc nr. 25</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">▪</div>
+                    <div>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">Telefon</div>
+                        <a href="tel:+40744529592">+40 744 529 592</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="despre">
+        <div class="about-container">
+            <div class="about-image">
+                <div class="image-placeholder">
+                    <img src="poze/1.jpg" alt="Av. Orza Mihăiță" class="profile-image">
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="section-label">Despre Mine</div>
+                <h2 class="section-title">Dedicare și Profesionalism în Practică Juridică</h2>
+                <p class="about-text">
+                    Cu o vastă experiență în domeniul juridic, ofer servicii de consultanță și reprezentare 
+                    juridică de înaltă calitate, adaptate nevoilor specifice ale fiecărui client. Abordarea mea 
+                    se bazează pe înțelegerea profundă a legislației și pe dedicare totală pentru apărarea 
+                    intereselor clienților mei.
+                </p>
+                <p class="about-text">
+                    De-a lungul carierei mele am gestionat cu succes o gamă variată de cazuri, de la litigii 
+                    civile și comerciale complexe până la proceduri de insolvență și executare silită. 
+                    Fiecare caz este abordat cu atenție la detalii și cu strategii juridice personalizate.
+                </p>
+                <p class="about-text">
+                    În calitate de lichidator judiciar autorizat, asigur gestionarea profesionistă a 
+                    procedurilor de insolvență, respectând cu strictețe prevederile legale și protejând 
+                    interesele tuturor părților implicate.
+                </p>
+                <div class="about-highlight">
+                    <p>
+                        Fiecare client merită o reprezentare juridică de excelență. Mă dedic în totalitate 
+                        pentru a asigura soluții eficiente și rezultate favorabile în fiecare caz pe care îl asum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicii">
+        <div class="services-header">
+            <div class="section-label">Servicii Juridice</div>
+            <h2 class="section-title">Domenii de Avocatură</h2>
+            <p class="about-text">
+                Asistență juridică specializată în multiple domenii de drept, 
+                cu soluții personalizate pentru fiecare caz în parte.
+            </p>
+            
+            <!-- Audio Player Imnul României -->
+            <div class="audio-player">
+                <div class="audio-controls">
+                    <button class="play-btn" id="playBtnRomania" onclick="togglePlay('romania')">
+                        <svg id="playIconRomania" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg id="pauseIconRomania" viewBox="0 0 24 24" style="display: none;">
+                            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                        </svg>
+                    </button>
+                    <div class="audio-info">
+                        <div class="audio-title">Imnul României - Deșteaptă-te, Române!</div>
+                        <div class="audio-progress" id="progressRomania" onclick="seekAudio(event, 'romania')">
+                            <div class="audio-progress-bar" id="progressBarRomania"></div>
+                        </div>
+                    </div>
+                    <div class="volume-control">
+                        <button class="volume-btn" onclick="toggleMute('romania')">
+                            <svg id="volumeIconRomania" viewBox="0 0 24 24">
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <audio id="audioRomania" src="audio/imnul-romaniei.mp3"></audio>
+            </div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">01</div>
+                    <h3 class="service-title">Dreptul Insolvenței</h3>
+                    <p class="service-description">
+                        Consiliere și reprezentare în proceduri de insolvență, reorganizare judiciară și 
+                        faliment. Asistență pentru creditori și debitori în cadrul proceselor de insolvență.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">02</div>
+                    <h3 class="service-title">Drept Comercial</h3>
+                    <p class="service-description">
+                        Consultanță în tranzacții comerciale, contracte de afaceri, litigii comerciale și 
+                        conformare cu reglementările comerciale în vigoare.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">03</div>
+                    <h3 class="service-title">Drept Civil</h3>
+                    <p class="service-description">
+                        Asistență în litigii civile, contracte, drept succesoral, răspundere civilă 
+                        delictuală și contractuală, drepturi reale și alte aspecte ale dreptului civil.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Card în grilă -->
+            <div class="cta-card">
+                <h3 class="cta-card-title">Aveți Nevoie de Asistență Juridică?</h3>
+                <p class="cta-card-text">
+                    Contactați-mă astăzi pentru o consultație profesionistă.
+                </p>
+                <div class="cta-card-buttons">
+                    <a href="tel:+40744529592" class="btn btn-primary">Apelați Acum</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">04</div>
+                    <h3 class="service-title">Executare Silită</h3>
+                    <p class="service-description">
+                        Reprezentare în proceduri de executare silită, urmărire a bunurilor debitorului, 
+                        contestații la executare și protecția drepturilor creditorilor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">05</div>
+                    <h3 class="service-title">Dreptul Familiei</h3>
+                    <p class="service-description">
+                        Asistență în divorț, partaj, custodie copii, pensie de întreținere, 
+                        autoritate părintească și alte aspecte ale dreptului familiei.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">06</div>
+                    <h3 class="service-title">Drept Contravențional</h3>
+                    <p class="service-description">
+                        Contestarea proceselor-verbale de constatare a contravențiilor, apărare în proceduri 
+                        contravenționale și reprezentare în fața autorităților competente.
+                    </p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-content">
+                    <div class="service-number">07</div>
+                    <h3 class="service-title">Înființări și Modificări Firme</h3>
+                    <p class="service-description">
+                        Asistență completă în înregistrarea societăților comerciale, modificări ale actelor 
+                        constitutive, dizolvare și lichidare, transferuri de sediu și alte operațiuni societare.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Liquidator Section -->
+    <section class="liquidator" id="lichidator">
+        <div class="liquidator-container">
+            <div class="liquidator-header">
+                <div class="section-label" style="color: var(--white);">Servicii Specializate</div>
+                <h2 class="section-title" style="color: var(--white);">Activitate de Lichidator Judiciar</h2>
+            </div>
+            <div class="liquidator-content">
+                <div class="liquidator-text">
+                    <h3>Expert în Proceduri de Lichidare</h3>
+                    <p>
+                        În calitate de lichidator autorizat, ofer servicii complete de administrare și lichidare 
+                        a societăților aflate în procedură de insolvență, asigurând respectarea strictă a 
+                        prevederilor Legii nr. 85/2014 privind procedurile de prevenire a insolvenței și de insolvență.
+                    </p>
+                    <p>
+                        Activitatea de lichidator presupune gestionarea patrimoniului debitorului în interesul 
+                        creditorilor, maximizând recuperarea creanțelor și asigurând o distribuire echitabilă 
+                        conform ordinii de prioritate stabilite de lege.
+                    </p>
+                    <p>
+                        Cu o abordare profesionistă și transparentă, asigur desfășurarea eficientă a tuturor 
+                        etapelor procedurii de lichidare, de la preluarea activelor până la distribuirea finală 
+                        către creditori și închiderea procedurii.
+                    </p>
+                    
+                    <!-- Audio Player Imnul Europei -->
+                    <div class="audio-player">
+                        <div class="audio-controls">
+                            <button class="play-btn" id="playBtnEuropa" onclick="togglePlay('europa')">
+                                <svg id="playIconEuropa" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <svg id="pauseIconEuropa" viewBox="0 0 24 24" style="display: none;">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                                </svg>
+                            </button>
+                            <div class="audio-info">
+                                <div class="audio-title">Imnul Europei - Oda Bucuriei</div>
+                                <div class="audio-progress" id="progressEuropa" onclick="seekAudio(event, 'europa')">
+                                    <div class="audio-progress-bar" id="progressBarEuropa"></div>
+                                </div>
+                            </div>
+                            <div class="volume-control">
+                                <button class="volume-btn" onclick="toggleMute('europa')">
+                                    <svg id="volumeIconEuropa" viewBox="0 0 24 24">
+                                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <audio id="audioEuropa" src="audio/imnul-europei.mp3"></audio>
+                    </div>
+                </div>
+                <div class="liquidator-features">
+                    <ul class="liquidator-list">
+                        <li>Administrarea și valorificarea activelor debitorului</li>
+                        <li>Întocmirea planului de lichidare și a rapoartelor periodice</li>
+                        <li>Reprezentarea masei credale în relațiile cu terții</li>
+                        <li>Verificarea și soluționarea cererilor de admitere a creanțelor</li>
+                        <li>Organizarea și desfășurarea procedurilor de vânzare a bunurilor</li>
+                        <li>Distribuirea sumelor realizate către creditori conform legii</li>
+                        <li>Întocmirea documentației necesare pentru închiderea procedurii</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <div class="section-label">Întrebări Frecvente</div>
+                <h2 class="section-title">Răspunsuri la Cele Mai Comune Întrebări</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Reprezențați clienți și din alte orașe?
+                </div>
+                <div class="faq-answer">
+                    Da, în funcție de situație, pot include și cazuri provenite din alte orașe din țară, 
+                    inclusiv români din diaspora.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Cum pot programa o consultație?
+                </div>
+                <div class="faq-answer">
+                    Pentru a programa o consultație, puteți să sunați la numărul disponibil pe site: 
+                    <strong>+40 744 529 592</strong>. Vă stau la dispoziție pentru a discuta despre situația 
+                    dumneavoastră juridică și pentru a stabili o întâlnire la cabinet.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Cu ce tipuri de cazuri mă puteți ajuta?
+                </div>
+                <div class="faq-answer">
+                    Ofer asistență juridică în domenii precum drept civil, drept comercial, executare silită 
+                    și dreptul familiei. Pentru cazuri specifice, putem discuta detalii într-o consultație inițială.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-about">
+                <h3>Av. Orza Mihăiță</h3>
+                <p>
+                    Cabinet de avocatură cu experiență vastă în drept civil, comercial, insolvență și 
+                    executare silită. Oferim asistență juridică profesionistă și personalizată pentru 
+                    protejarea drepturilor și intereselor clienților noștri.
+                </p>
+                <p>
+                    Abordăm fiecare caz cu dedicare și profesionalism, asigurând strategii juridice 
+                    eficiente și soluții adaptate nevoilor specifice ale fiecărui client.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigare</h4>
+                <ul class="footer-links">
+                    <li><a href="#despre">Despre Mine</a></li>
+                    <li><a href="#servicii">Servicii de Avocatură</a></li>
+                    <li><a href="#lichidator">Activitate Lichidator</a></li>
+                    <li><a href="#faq">Întrebări Frecvente</a></li>
+                </ul>
+            </div>
+            <div class="footer-section footer-contact">
+                <h4>Contact</h4>
+                <p>Baia Mare, str. George Coșbuc nr. 25</p>
+                <p>Telefon: <a href="tel:+40744529592">+40 744 529 592</a></p>
+                <p>Program: Luni - Vineri<br>09:00 - 17:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Av. Orza Mihăiță - Cabinet de Avocatură. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Audio Player Functionality
+        const audioPlayers = {
+            romania: {
+                audio: null,
+                playBtn: null,
+                playIcon: null,
+                pauseIcon: null,
+                progressBar: null,
+                volumeIcon: null
+            },
+            europa: {
+                audio: null,
+                playBtn: null,
+                playIcon: null,
+                pauseIcon: null,
+                progressBar: null,
+                volumeIcon: null
+            }
+        };
+
+        // Initialize players
+        window.addEventListener('DOMContentLoaded', () => {
+            // Romania player
+            audioPlayers.romania.audio = document.getElementById('audioRomania');
+            audioPlayers.romania.playBtn = document.getElementById('playBtnRomania');
+            audioPlayers.romania.playIcon = document.getElementById('playIconRomania');
+            audioPlayers.romania.pauseIcon = document.getElementById('pauseIconRomania');
+            audioPlayers.romania.progressBar = document.getElementById('progressBarRomania');
+            audioPlayers.romania.volumeIcon = document.getElementById('volumeIconRomania');
+
+            // Europa player
+            audioPlayers.europa.audio = document.getElementById('audioEuropa');
+            audioPlayers.europa.playBtn = document.getElementById('playBtnEuropa');
+            audioPlayers.europa.playIcon = document.getElementById('playIconEuropa');
+            audioPlayers.europa.pauseIcon = document.getElementById('pauseIconEuropa');
+            audioPlayers.europa.progressBar = document.getElementById('progressBarEuropa');
+            audioPlayers.europa.volumeIcon = document.getElementById('volumeIconEuropa');
+
+            // Set default volume
+            if (audioPlayers.romania.audio) audioPlayers.romania.audio.volume = 0.7;
+            if (audioPlayers.europa.audio) audioPlayers.europa.audio.volume = 0.7;
+
+            // Update progress bars
+            ['romania', 'europa'].forEach(player => {
+                if (audioPlayers[player].audio) {
+                    audioPlayers[player].audio.addEventListener('timeupdate', () => {
+                        updateProgress(player);
+                    });
+
+                    audioPlayers[player].audio.addEventListener('ended', () => {
+                        resetPlayer(player);
+                    });
+                }
+            });
+        });
+
+        function togglePlay(player) {
+            const audio = audioPlayers[player].audio;
+            const playIcon = audioPlayers[player].playIcon;
+            const pauseIcon = audioPlayers[player].pauseIcon;
+
+            if (!audio) return;
+
+            // Pause other player
+            const otherPlayer = player === 'romania' ? 'europa' : 'romania';
+            if (audioPlayers[otherPlayer].audio && !audioPlayers[otherPlayer].audio.paused) {
+                audioPlayers[otherPlayer].audio.pause();
+                resetPlayer(otherPlayer);
+            }
+
+            if (audio.paused) {
+                audio.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                audio.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        }
+
+        function updateProgress(player) {
+            const audio = audioPlayers[player].audio;
+            const progressBar = audioPlayers[player].progressBar;
+
+            if (!audio || !progressBar) return;
+
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = percent + '%';
+        }
+
+        function seekAudio(event, player) {
+            const audio = audioPlayers[player].audio;
+            const progressContainer = document.getElementById('progress' + player.charAt(0).toUpperCase() + player.slice(1));
+
+            if (!audio || !progressContainer) return;
+
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (event.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        }
+
+        function toggleMute(player) {
+            const audio = audioPlayers[player].audio;
+
+            if (!audio) return;
+
+            audio.muted = !audio.muted;
+        }
+
+        function resetPlayer(player) {
+            const playIcon = audioPlayers[player].playIcon;
+            const pauseIcon = audioPlayers[player].pauseIcon;
+            const progressBar = audioPlayers[player].progressBar;
+
+            if (playIcon) playIcon.style.display = 'block';
+            if (pauseIcon) pauseIcon.style.display = 'none';
+            if (progressBar) progressBar.style.width = '0%';
+        }
+    </script>
+</body>
+</html>
